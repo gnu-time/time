@@ -47,8 +47,7 @@
 /* Prepare to measure a child process.  */
 
 void
-resuse_start (resp)
-     RESUSE *resp;
+resuse_start (RESUSE *resp)
 {
 #if HAVE_WAIT3
   gettimeofday (&resp->start, (struct timezone *) 0);
@@ -65,16 +64,9 @@ resuse_start (resp)
 /* Wait for and fill in data on child process PID.
    Return 0 on error, 1 if ok.  */
 
-#if __STDC__
 /* pid_t is short on BSDI, so don't try to promote it.  */
 int
 resuse_end (pid_t pid, RESUSE *resp)
-#else
-int
-resuse_end (pid, resp)
-     pid_t pid;
-     RESUSE *resp;
-#endif
 {
   int status;
 

@@ -322,10 +322,7 @@ for details about the options it supports.\n",
 /* Print ARGV to FP, with each entry in ARGV separated by FILLER.  */
 
 static void
-fprintargv (fp, argv, filler)
-     FILE *fp;
-     const char *const *argv;
-     const char *filler;
+fprintargv (FILE *fp, const char *const *argv, const char *filler)
 {
   const char *const *av;
 
@@ -348,8 +345,7 @@ fprintargv (fp, argv, filler)
    Print a message and return NULL if memory allocation failed.  */
 
 static char *
-linear_argv (argv)
-     const char *const *argv;
+linear_argv (const char *const *argv)
 {
   const char *const *s;		/* Each string in ARGV.  */
   char *new;			/* Allocated space.  */
@@ -428,11 +424,7 @@ linear_argv (argv)
    RESP is resource information on the command.  */
 
 static void
-summarize (fp, fmt, command, resp)
-     FILE *fp;
-     const char *fmt;
-     const char **command;
-     RESUSE *resp;
+summarize (FILE *fp, const char *fmt, const char **command, RESUSE *resp)
 {
   unsigned long r;		/* Elapsed real milliseconds.  */
   unsigned long v;		/* Elapsed virtual (CPU) milliseconds.  */
@@ -712,9 +704,7 @@ summarize (fp, fmt, command, resp)
    Return the command line to run and gather statistics on.  */
 
 static const char **
-getargs (argc, argv)
-     int argc;
-     char **argv;
+getargs (int argc, char **argv)
 {
   int optc;
   char *format;			/* Format found in environment.  */
@@ -798,9 +788,7 @@ getargs (argc, argv)
    Put the statistics in *RESP.  */
 
 static void
-run_command (cmd, resp)
-     char *const *cmd;
-     RESUSE *resp;
+run_command (const char **cmd, RESUSE *resp)
 {
   pid_t pid;			/* Pid of child.  */
   sighandler interrupt_signal, quit_signal;
@@ -813,9 +801,7 @@ run_command (cmd, resp)
     error (EXIT_CANCELED, errno, "cannot fork");
   else if (pid == 0)
     {				/* If child.  */
-      /* Don't cast execvp arguments; that causes errors on some systems,
-	 versus merely warnings if the cast is left off.  */
-      execvp (cmd[0], cmd);
+      execvp (cmd[0], (char * const *) cmd);
       saved_errno = errno;
       error (0, errno, "cannot run %s", cmd[0]);
       _exit (saved_errno == ENOENT ? EXIT_ENOENT : EXIT_CANNOT_INVOKE);
@@ -834,9 +820,7 @@ run_command (cmd, resp)
 }
 
 int
-main (argc, argv)
-     int argc;
-     char **argv;
+main (int argc, char **argv)
 {
   const char **command_line;
   RESUSE res;
