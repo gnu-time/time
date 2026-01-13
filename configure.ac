@@ -66,7 +66,6 @@ dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
 AC_TYPE_PID_T
 AC_TYPE_SIZE_T
-AC_TYPE_SIGNAL
 
 dnl Checks for library functions.
 AC_FUNC_VPRINTF

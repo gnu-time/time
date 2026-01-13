@@ -75,10 +75,6 @@ enum
     "David MacKenzie",              \
     "Assaf Gordon"
 
-
-/* A Pointer to a signal handler.  */
-typedef RETSIGTYPE (*sighandler) ();
-
 /* msec = milliseconds = 1/1,000 (1*10e-3) second.
    usec = microseconds = 1/1,000,000 (1*10e-6) second.  */
 
@@ -791,7 +787,7 @@ static void
 run_command (const char **cmd, RESUSE *resp)
 {
   pid_t pid;			/* Pid of child.  */
-  sighandler interrupt_signal, quit_signal;
+  sighandler_t interrupt_signal, quit_signal;
   int saved_errno;
 
   resuse_start (resp);
