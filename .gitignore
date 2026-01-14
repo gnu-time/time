@@ -1,4 +1,3 @@
-/build-aux
 *~
 *.[oa]
 .dirstamp
@@ -32,7 +31,9 @@
 /tests/time-aux
 /tests/.deps
 
-/build-aux
 /autom4te.cache
+/build-aux
 /time-*.tar.gz
 /time-*.tar.xz
+/GNUmakefile
+/maint.mk
