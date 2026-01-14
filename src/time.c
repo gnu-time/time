@@ -33,7 +33,6 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <stdnoreturn.h>
 #include <string.h>
 #include <limits.h>
 #include <unistd.h>
@@ -212,7 +211,7 @@ static struct option const longopts[] =
 # define PROGRAM_NAME "time"
 
 
-noreturn static void
+static _Noreturn void
 usage (int status)
 {
   if (status != EXIT_SUCCESS)
