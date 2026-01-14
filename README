@@ -12,4 +12,7 @@ bug-time@gnu.org.  Please include the version of
 `time', which you can get by running `time --version', and the
 operating system and C compiler you used.
 
+For any copyright year range specified as YYYY-ZZZZ in this package
+note that the range specifies every single year in that closed interval.
+
 Please see the file COPYING for copying conditions.

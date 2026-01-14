@@ -1,5 +1,5 @@
 # Customize maint.mk                           -*- makefile -*-
-# Copyright (C) 2018-2021 Free Software Foundation, Inc.
+# Copyright (C) 2018-2021, 2026 Free Software Foundation, Inc.
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 old_NEWS_hash = d41d8cd98f00b204e9800998ecf8427e
 
 update-copyright-env = \
-  UPDATE_COPYRIGHT_USE_INTERVALS=2 \
+  UPDATE_COPYRIGHT_USE_INTERVALS=1 \
   UPDATE_COPYRIGHT_MAX_LINE_LENGTH=79
 
 local-checks-to-skip = \
