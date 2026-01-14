@@ -52,7 +52,7 @@ Texts.  A copy of the license is included in the section entitled
 @node Top
 @top Time
 
-This file documents the the GNU @code{time} command for running programs
+This file documents the GNU @code{time} command for running programs
 and summarizing the system resources they use.
 Version @value{VERSION}, updated @value{UPDATED}
 @end ifnottex

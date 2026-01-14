@@ -15,7 +15,7 @@
 
    You should have received a copy of the GNU General Public License
    along with GNU Time.  If not, see <http://www.gnu.org/licenses/>.
-*/ 
+*/
 
 #ifndef _RESUSE_H
 #define _RESUSE_H 1

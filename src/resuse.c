@@ -19,9 +19,9 @@
 
    You should have received a copy of the GNU General Public License
    along with GNU Time.  If not, see <http://www.gnu.org/licenses/>.
-*/ 
+*/
 
-#include "config.h"
+#include <config.h>
 #include <sys/time.h>
 #include <sys/wait.h>
 #include <sys/resource.h>
@@ -31,10 +31,10 @@
 # ifndef HZ
 #  include <sys/param.h>
 # endif
-# if !defined(HZ) && defined(CLOCKS_PER_SEC)
+# if !defined HZ && defined CLOCKS_PER_SEC
 #  define HZ CLOCKS_PER_SEC
 # endif
-# if !defined(HZ) && defined(CLK_TCK)
+# if !defined HZ && defined CLK_TCK
 #  define HZ CLK_TCK
 # endif
 # ifndef HZ

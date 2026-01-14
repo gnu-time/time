@@ -17,7 +17,7 @@
    along with GNU Time.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "config.h"
+#include <config.h>
 
 #if GETRUSAGE_RETURNS_PAGES
 

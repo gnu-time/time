@@ -19,10 +19,10 @@
 
    You should have received a copy of the GNU General Public License
    along with GNU Time.  If not, see <http://www.gnu.org/licenses/>.
-*/ 
+*/
 
 
-#include "config.h"
+#include <config.h>
 
 #include <sys/wait.h>
 #include <sys/resource.h>
@@ -115,10 +115,10 @@ enum
 
    sysconf(_SC_CLK_TCK) is *unrelated*.  */
 
-#if defined(sun3) || defined(hp300) || defined(ibm032)
+#if defined sun3 || defined hp300 || defined ibm032
 #define TICKS_PER_SEC 50
 #endif
-#if defined(mips)
+#if defined mips
 #define TICKS_PER_SEC 250
 #endif
 #ifndef TICKS_PER_SEC
@@ -196,7 +196,7 @@ static const char *output_format;
 /* Quiet mode: do not print info about abnormal terminations */
 static bool quiet;
 
-static struct option longopts[] =
+static struct option const longopts[] =
 {
   {"append", no_argument, NULL, 'a'},
   {"format", required_argument, NULL, 'f'},
@@ -336,8 +336,8 @@ fprintargv (FILE *fp, const char *const *argv, const char *filler)
 /* Return a null-terminated string containing the concatenation,
    in order, of all of the elements of ARGV.
    The '\0' at the end of each ARGV-element is not copied.
-   Example:	char *argv[] = {"12", "ab", ".,"};
- 		linear_argv(argv) == "12ab.,"
+   Example:     char *argv[] = {"12", "ab", ".,"};
+                linear_argv(argv) == "12ab.,"
    Print a message and return NULL if memory allocation failed.  */
 
 static char *

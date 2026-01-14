@@ -369,7 +369,7 @@ then terminate with exit code 4:\n\
   time-aux -m 200M -s 1s -b 1s -e 4\n\
 \n\
 ");
-  exit(0);
+  exit (EXIT_SUCCESS);
 }
 
 int main (int argc, char *argv[])
