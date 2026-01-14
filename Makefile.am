@@ -1,4 +1,7 @@
 
+EXTRA_DIST = \
+  ChangeLog-2015
+
 ACLOCAL_AMFLAGS = -I m4
 
 AM_CPPFLAGS = \
@@ -13,7 +16,6 @@ MOSTLYCLEANFILES =
 MOSTLYCLEANDIRS =
 MAINTAINERCLEANFILES =
 noinst_LIBRARIES =
-EXTRA_DIST =
 BUILT_SOURCES =
 
 
@@ -94,3 +96,14 @@ TESTS_ENVIRONMENT = \
   test_dir='$(abs_top_srcdir)/tests' ; \
   export top_srcdir PATH LC_ALL VERSION test_dir ; \
   9>&2
+
+dist-hook: gen-ChangeLog
+
+.PHONY: gen-ChangeLog
+gen-ChangeLog:
+	$(AM_V_GEN)if test -d .git; then				\
+	  $(top_srcdir)/build-aux/gitlog-to-changelog			\
+	  > $(distdir)/cl-t &&						\
+	    { rm -f $(distdir)/ChangeLog &&				\
+	      mv $(distdir)/cl-t $(distdir)/ChangeLog; }		\
+	fi
