@@ -1,5 +1,7 @@
 
-EXTRA_DIST = \
+EXTRA_DIST =		\
+  .prev-version		\
+  .version		\
   ChangeLog-2015
 
 ACLOCAL_AMFLAGS = -I m4
@@ -32,6 +34,9 @@ lib_libtime_a_CFLAGS = $(AM_CFLAGS) $(GNULIB_WARN_CFLAGS) $(WERROR_CFLAGS)
 lib_libtime_a_LIBADD += $(LIBOBJS)
 lib_libtime_a_DEPENDENCIES += $(LIBOBJS)
 
+noinst_LIBRARIES += src/libver.a
+nodist_src_libver_a_SOURCES = src/version.c src/version.h
+
 ##
 ## GNU Time
 ##
@@ -45,7 +50,7 @@ time_SOURCES = \
 time_CFLAGS = $(WARN_CFLAGS)
 
 time_LDADD = \
-       lib/lib$(PACKAGE).a
+       src/libver.a lib/lib$(PACKAGE).a
 
 #SUBDIRS = . gnulib-tests
 
@@ -60,6 +65,27 @@ doc_time_TEXINFOS = \
 
 
 DISTCLEANFILES =
+
+BUILT_SOURCES += src/version.c
+src/version.c: Makefile
+	$(AM_V_GEN)rm -f $@
+	$(AM_V_at)${MKDIR_P} src
+	$(AM_V_at)printf '#include <config.h>\n' > $@t
+	$(AM_V_at)printf '#include "version.h"\n' >> $@t
+	$(AM_V_at)printf 'char const *Version = "$(PACKAGE_VERSION)";\n' >> $@t
+	$(AM_V_at)chmod a-w $@t
+	$(AM_V_at)mv $@t $@
+
+BUILT_SOURCES += src/version.h
+src/version.h: Makefile
+	$(AM_V_GEN)rm -f $@
+	$(AM_V_at)${MKDIR_P} src
+	$(AM_V_at)printf 'extern char const *Version;\n' > $@t
+	$(AM_V_at)chmod a-w $@t
+	$(AM_V_at)mv $@t $@
+
+DISTCLEANFILES += src/version.c src/version.h
+MAINTAINERCLEANFILES += $(BUILT_SOURCES)
 
 ##
 ## Tests
@@ -97,7 +123,12 @@ TESTS_ENVIRONMENT = \
   export top_srcdir PATH LC_ALL VERSION test_dir ; \
   9>&2
 
+BUILT_SOURCES += .version
+.version:
+	$(AM_V_GEN)echo $(VERSION) > $@-t && mv $@-t $@
+
 dist-hook: gen-ChangeLog
+	$(AM_V_GEN)echo $(VERSION) > $(distdir)/.tarball-version
 
 .PHONY: gen-ChangeLog
 gen-ChangeLog:

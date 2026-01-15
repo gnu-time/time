@@ -38,7 +38,7 @@
 #include "sig2str.h"
 #include "progname.h"
 #include <error.h>
-#define Version VERSION
+#include "version.h"
 #include "version-etc.h"
 
 #include "resuse.h"

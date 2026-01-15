@@ -5,7 +5,8 @@ AC_PREREQ([2.69])
 
 AC_INIT([GNU Time],
         m4_esyscmd([build-aux/git-version-gen .tarball-version]),
-        [bug-time@gnu.org], [],
+        [bug-time@gnu.org],
+        [time],
         [https://www.gnu.org/software/time/])
 
 AC_CONFIG_SRCDIR([src/time.c])

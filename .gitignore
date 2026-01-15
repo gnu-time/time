@@ -1,6 +1,7 @@
 *~
 *.[oa]
 .dirstamp
+.version
 
 /aclocal.m4
 /ChangeLog
@@ -16,6 +17,8 @@
 /Makefile.in
 
 /src/.deps
+/src/version.c
+/src/version.h
 
 /doc/stamp-vti
 /doc/time.info
