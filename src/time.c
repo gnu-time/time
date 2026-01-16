@@ -328,7 +328,7 @@ fprintargv (FILE *fp, const char *const *argv, const char *filler)
       fputs (*av, fp);
     }
   if (ferror (fp))
-    error (1, errno, "write error");
+    error (EXIT_FAILURE, errno, "write error");
 }
 
 /* Return a null-terminated string containing the concatenation,
@@ -679,12 +679,12 @@ summarize (FILE *fp, const char *fmt, const char **command, RESUSE *resp)
         }
 
       if (ferror (fp))
-        error (1, errno, "write error");
+        error (EXIT_FAILURE, errno, "write error");
     }
   putc ('\n', fp);
 
   if (ferror (fp))
-    error (1, errno, "write error");
+    error (EXIT_FAILURE, errno, "write error");
 }
 
 /* Initialize the options and parse the command line arguments.
@@ -806,7 +806,7 @@ run_command (const char **cmd, RESUSE *resp)
   quit_signal = signal (SIGQUIT, SIG_IGN);
 
   if (resuse_end (pid, resp) == 0)
-    error (1, errno, "error waiting for child process");
+    error (EXIT_FAILURE, errno, "error waiting for child process");
 
   /* Re-enable signals.  */
   signal (SIGINT, interrupt_signal);
