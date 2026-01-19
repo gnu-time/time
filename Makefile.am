@@ -96,42 +96,6 @@ src/version.h: Makefile
 DISTCLEANFILES += src/version.c src/version.h
 MAINTAINERCLEANFILES += $(BUILT_SOURCES)
 
-##
-## Tests
-##
-
-# Build the auxiliary program used for testing 'time'.
-# This program is kept minimal and POSIX-compatible on purpose,
-# and does not need gnulib's headers/modules.
-# (thus, override the global AM_CPPFLAGS/AM_CFLAGS)
-check_PROGRAMS = tests/time-aux
-tests_time_aux_SOURCES = tests/time-aux.c
-tests_time_aux_CPPFLAGS =
-tests_time_aux_CFLAGS =
-
-
-TESTS = tests/help-version.sh \
-	tests/time-max-rss.sh \
-	tests/time-exit-codes.sh \
-	tests/time-posix-quiet.sh \
-	tests/time-format-T.sh
-
-TEST_EXTENSIONS = .sh
-
-EXTRA_DIST += tests/init.sh \
-	$(TESTS)
-
-# Note: the "9>&2" redirection is part of Automake's parallel-tests.
-#       see also stderr_fileno in 'init.cfg'
-TESTS_ENVIRONMENT = \
-  top_srcdir=$(abs_top_srcdir) \
-  PATH='$(abs_top_builddir)$(PATH_SEPARATOR)$(abs_top_builddir)/tests$(PATH_SEPARATOR)'$$PATH \
-  LC_ALL=C \
-  VERSION='$(VERSION)' \
-  test_dir='$(abs_top_srcdir)/tests' ; \
-  export top_srcdir PATH LC_ALL VERSION test_dir ; \
-  9>&2
-
 BUILT_SOURCES += .version
 .version:
 	$(AM_V_GEN)echo $(VERSION) > $@-t && mv $@-t $@
@@ -149,3 +113,4 @@ gen-ChangeLog:
 	fi
 
 include $(top_srcdir)/doc/local.mk
+include $(top_srcdir)/tests/local.mk
