@@ -73,13 +73,6 @@ time_LDADD = \
 EXTRA_DIST += \
 	m4/gnulib-cache.m4
 
-info_TEXINFOS = doc/time.texi
-
-doc_time_TEXINFOS = \
-  doc/fdl.texi \
-  doc/version.texi
-
-
 DISTCLEANFILES =
 
 BUILT_SOURCES += src/version.c
@@ -154,3 +147,5 @@ gen-ChangeLog:
 	    { rm -f $(distdir)/ChangeLog &&				\
 	      mv $(distdir)/cl-t $(distdir)/ChangeLog; }		\
 	fi
+
+include $(top_srcdir)/doc/local.mk
