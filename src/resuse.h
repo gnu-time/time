@@ -31,7 +31,8 @@ typedef struct
 {
   int waitstatus;
   struct rusage ru;
-  struct timeval start, elapsed; /* Wallclock time of process.  */
+  struct timespec start_time;
+  struct timespec end_time;
 } RESUSE;
 
 /* Prepare to measure a child process.  */

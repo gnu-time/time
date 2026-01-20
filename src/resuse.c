@@ -26,6 +26,8 @@
 #include <sys/wait.h>
 #include <sys/resource.h>
 
+#include "timespec.h"
+
 #include "resuse.h"
 
 /* Prepare to measure a child process.  */
@@ -33,7 +35,7 @@
 void
 resuse_start (RESUSE *resp)
 {
-  gettimeofday (&resp->start, (struct timezone *) 0);
+  resp->start_time = current_timespec ();
 }
 
 /* Wait for and fill in data on child process PID.
@@ -49,16 +51,7 @@ resuse_end (pid_t pid, RESUSE *resp)
       || getrusage (RUSAGE_CHILDREN, &resp->ru) < 0)
     return 0;
 
-  gettimeofday (&resp->elapsed, (struct timezone *) 0);
-
-  resp->elapsed.tv_sec -= resp->start.tv_sec;
-  if (resp->elapsed.tv_usec < resp->start.tv_usec)
-    {
-      /* Manually carry a one from the seconds field.  */
-      resp->elapsed.tv_usec += 1000000;
-      --resp->elapsed.tv_sec;
-    }
-  resp->elapsed.tv_usec -= resp->start.tv_usec;
+  resp->end_time = current_timespec ();
 
   resp->waitstatus = status;
 

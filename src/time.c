@@ -38,6 +38,8 @@
 #include "sig2str.h"
 #include "progname.h"
 #include <error.h>
+
+#include "timespec.h"
 #include "version.h"
 #include "version-etc.h"
 
@@ -443,12 +445,14 @@ summarize (FILE *fp, const char *fmt, const char **command, RESUSE *resp)
      check the time value.  If it is zero, then we take `evasive action'
      instead of calculating a value.  */
 
-  r = resp->elapsed.tv_sec * 1000 + resp->elapsed.tv_usec / 1000;
+  struct timespec elapsed_time = timespec_sub (resp->end_time,
+                                               resp->start_time);
+  r = elapsed_time.tv_sec * 1000 + elapsed_time.tv_nsec / 1000000;
 
   v = resp->ru.ru_utime.tv_sec * 1000 + resp->ru.ru_utime.TV_MSEC +
     resp->ru.ru_stime.tv_sec * 1000 + resp->ru.ru_stime.TV_MSEC;
 
-  us_r = resp->elapsed.tv_usec;
+  us_r = elapsed_time.tv_nsec / 1000;
   us_v = resp->ru.ru_utime.tv_usec + resp->ru.ru_stime.tv_usec;
 
   while (*fmt)
@@ -475,16 +479,16 @@ summarize (FILE *fp, const char *fmt, const char **command, RESUSE *resp)
               break;
 
             case 'E':		/* Elapsed real (wall clock) time.  */
-              if (resp->elapsed.tv_sec >= 3600)	/* One hour -> h:m:s.  */
+              if (elapsed_time.tv_sec >= 3600)	/* One hour -> h:m:s.  */
                 fprintf (fp, "%ld:%02ld:%02ld",
-                         (long int)(resp->elapsed.tv_sec / 3600),
-                         (long int)((resp->elapsed.tv_sec % 3600) / 60),
-                         (long int)(resp->elapsed.tv_sec % 60));
+                         (long int)(elapsed_time.tv_sec / 3600),
+                         (long int)((elapsed_time.tv_sec % 3600) / 60),
+                         (long int)(elapsed_time.tv_sec % 60));
               else
                 fprintf (fp, "%ld:%02ld.%02ld",	/* -> m:s.  */
-                         (long int)(resp->elapsed.tv_sec / 60),
-                         (long int)(resp->elapsed.tv_sec % 60),
-                         (long int)(resp->elapsed.tv_usec / 10000));
+                         (long int)(elapsed_time.tv_sec / 60),
+                         (long int)(elapsed_time.tv_sec % 60),
+                         (long int)(elapsed_time.tv_nsec / 10000000));
               break;
 
             case 'F':		/* Major page faults.  */
@@ -606,8 +610,8 @@ summarize (FILE *fp, const char *fmt, const char **command, RESUSE *resp)
 
             case 'e':		/* Elapsed real time in seconds.  */
               fprintf (fp, "%ld.%02ld",
-                       (long int)resp->elapsed.tv_sec,
-                       (long int)(resp->elapsed.tv_usec / 10000));
+                       (long int)elapsed_time.tv_sec,
+                       (long int)(elapsed_time.tv_nsec / 10000000));
               break;
 
             case 'k':		/* Signals delivered.  */

@@ -34,6 +34,9 @@ LDADD = src/libver.a lib/lib$(PACKAGE).a
 
 src_time_LDADD = $(LDADD)
 
+# For gettime.
+src_time_LDADD += $(CLOCK_TIME_LIB)
+
 BUILT_SOURCES += src/version.c
 src/version.c: Makefile
 	$(AM_V_GEN)rm -f $@
