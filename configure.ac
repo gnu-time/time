@@ -96,7 +96,7 @@ if test -z "$time_getrusage_mem_units" ; then
   # if envvar 'time_getrusage_mem_units' isn't set,
   # autodetect based on OS.
   case "$host_os" in
-    minix*|aix*|*bsd*|linux*|gnu*)
+    minix*|aix*|*bsd*|linux*|gnu*|haiku*)
                      time_getrusage_mem_units=kb ;;
 
     macos*|darwin*)  time_getrusage_mem_units=bytes ;;
@@ -117,7 +117,7 @@ case $time_getrusage_mem_units in
   kb)
      AC_DEFINE([GETRUSAGE_RETURNS_KB],[1],
                 [Define to 1 if getrusage(2) on this systems returns
-                 ru_maxrss in kilobytes])
+                 ru_maxrss in kilobytes or sets it to zero])
      ;;
 
   bytes)
