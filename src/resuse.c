@@ -29,7 +29,7 @@
 #include "timespec.h"
 
 #include "resuse.h"
-
+
 /* Prepare to measure a child process.  */
 
 void
@@ -37,7 +37,7 @@ resuse_start (RESUSE *resp)
 {
   resp->start_time = current_timespec ();
 }
-
+
 /* Wait for and fill in data on child process PID.
    Return 0 on error, 1 if ok.  */
 

@@ -46,8 +46,6 @@
 #include "resuse.h"
 #include "rusage-kb.h"
 
-
-
 /* For now, no gettext support */
 #define _(x) (x)
 
@@ -131,7 +129,6 @@ enum
 /* Return the number of clock ticks that occur in M milliseconds.  */
 #define MSEC_TO_TICKS(m) ((m) / MSEC_PER_TICK)
 
-
 /* The default output format.  */
 static const char *const default_format =
 "%Uuser %Ssystem %Eelapsed %PCPU (%Xavgtext+%Davgdata %Mmaxresident)k\n\
@@ -636,7 +633,7 @@ summarize (FILE *fp, const char *fmt, const char **command, RESUSE *resp)
   if (ferror (fp))
     error (EXIT_FAILURE, errno, "write error");
 }
-
+
 /* Initialize the options and parse the command line arguments.
    Also note the position in ARGV where the command to time starts.
 
@@ -722,7 +719,7 @@ getargs (int argc, char **argv)
 
   return (const char **) &argv[optind];
 }
-
+
 /* Run command CMD and return statistics on it.
    Put the statistics in *RESP.  */
 
