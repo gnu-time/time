@@ -38,6 +38,7 @@ tests_time_aux_LDADD =
 all_tests =			\
   tests/help-version.sh		\
   tests/time-max-rss.sh		\
+  tests/time-environment.sh	\
   tests/time-exit-codes.sh	\
   tests/time-posix-quiet.sh	\
   tests/time-format-T.sh
