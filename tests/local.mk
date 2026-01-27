@@ -41,6 +41,7 @@ all_tests =			\
   tests/time-environment.sh	\
   tests/time-exit-codes.sh	\
   tests/time-posix-quiet.sh	\
+  tests/time-verbose.sh		\
   tests/time-format-T.sh
 
 # Note: the "9>&2" redirection is part of Automake's parallel-tests.
