@@ -539,7 +539,7 @@ Print the version number of @code{time} and exit.
 @cindex reporting bugs
 
 To report bugs, suggest enhancements or otherwise discuss GNU
-@code{time}, please send electronic mail to @email{bug-time.org}.
+@code{time}, please send electronic mail to @email{bug-time@@gnu.org}.
 
 @cindex checklist for bug reports
 For bug reports, please include enough information for the maintainers
