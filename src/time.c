@@ -640,13 +640,6 @@ static const char **
 getargs (int argc, char **argv)
 {
   int optc;
-  char *format;			/* Format found in environment.  */
-
-  /* Set the format string from the environment.  Do this before checking
-     the args so that we won't clobber a user-specified format.  */
-  format = getenv ("TIME");
-  if (format)
-    output_format = format;
 
   while ((optc = getopt_long (argc, argv, "+af:o:pqvV", longopts, (int *) 0))
 	 != EOF)
@@ -703,6 +696,14 @@ getargs (int argc, char **argv)
   /* If --verbose is used, disregard --format and use VERBOSE_FORMAT.  */
   if (verbose)
     output_format = verbose_format;
+  else if (output_format == default_format)
+    {
+      /* If neither --verbose, --portability, or --format is used, check if
+         the format string is specified by the TIME environment variable.  */
+      char const *env_format = getenv ("TIME");
+      if (env_format)
+        output_format = env_format;
+    }
 
   return (const char **) &argv[optind];
 }
