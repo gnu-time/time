@@ -2,6 +2,12 @@ GNU time NEWS                                         -*- outline -*-
 
 * Noteworthy changes in release ?.? (????-??-??) [?]
 
+** Bug fixes
+
+  'time --help' no longer incorrectly lists the short option -h as being
+  supported.  Previously it was listed as being equivalent to --help.
+  [bug introduced in time-1.8]
+
 ** Improvements
 
   time now uses the more portable waitpid and getrusage system calls

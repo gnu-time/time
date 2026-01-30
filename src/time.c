@@ -184,7 +184,7 @@ static struct option const longopts[] =
 {
   {"append", no_argument, NULL, 'a'},
   {"format", required_argument, NULL, 'f'},
-  {"help", no_argument, NULL, 'h'},
+  {"help", no_argument, NULL, GETOPT_HELP_CHAR},
   {"output-file", required_argument, NULL, 'o'},
   {"portability", no_argument, NULL, 'p'},
   {"quiet", no_argument, NULL, 'q'},
@@ -249,7 +249,7 @@ Usage: %s [-apvV] [-f format] [-o file] [--append] [--verbose]\n\
 
 
   fputs (_("\
-  -h,  --help               display this help and exit\n"), stdout);
+       --help               display this help and exit\n"), stdout);
   fputs (_("\
   -V,  --version            output version information and exit\n"), stdout);
 
@@ -652,24 +652,25 @@ getargs (int argc, char **argv)
 	case 'f':
 	  output_format = optarg;
 	  break;
-	case 'h':
-	  usage (EXIT_SUCCESS);
 	case 'o':
 	  outfile = optarg;
 	  break;
 	case 'p':
 	  output_format = posix_format;
 	  break;
-    case 'q':
-      quiet = true;
-      break;
+        case 'q':
+          quiet = true;
+          break;
 	case 'v':
 	  verbose = true;
 	  break;
 	case 'V':
-      version_etc (stdout, PROGRAM_NAME, PACKAGE_NAME, Version, AUTHORS,
-                   (char *) NULL);
-      exit (EXIT_SUCCESS);
+          version_etc (stdout, PROGRAM_NAME, PACKAGE_NAME, Version, AUTHORS,
+                       (char *) NULL);
+          exit (EXIT_SUCCESS);
+        case GETOPT_HELP_CHAR:
+          usage (EXIT_SUCCESS);
+          break;
 	default:
 	  usage (EXIT_CANCELED);
 	}

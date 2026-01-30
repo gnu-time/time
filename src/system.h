@@ -16,8 +16,18 @@
 
 /* Include this file _after_ system headers if possible.  */
 
+#include <limits.h>
+
 /* No gettext support for now.  */
 #define _(x) (x)
+
+/* These enum values cannot possibly conflict with the option values
+   ordinarily used by commands, including CHAR_MAX + 1, etc.  Avoid
+   CHAR_MIN - 1, as it may equal -1, the getopt end-of-options value.  */
+enum
+{
+  GETOPT_HELP_CHAR = (CHAR_MIN - 2),
+};
 
 /* This text is copied from coreutils.  */
 #define USAGE_BUILTIN_WARNING \
