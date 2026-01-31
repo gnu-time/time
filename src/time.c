@@ -1,4 +1,4 @@
-/* `time' utility to display resource usage of processes, main source file.
+/* time - display the resource usage of a process.
    Copyright (C) 1990-2021, 2026 Free Software Foundation, Inc.
 
    Originally written by David Keppel <pardo@cs.washington.edu>.
@@ -95,13 +95,13 @@ enum
    If the avgresident (%t) we print is less than a power of 2 away from
    the maxresident (%M), then we likely are using the right number.
    Another good check is comparing the average text size with the
-   output of `size' on the executable.
+   output of 'size' on the executable.
 
    According to the SunOS manual, there are 50 ticks/sec on the sun3
    and 100 on the sun4.
 
    Some manuals have an apparent error, claiming that units for average
-   sizes are kb*sec.  Judging by the contents of `struct rusage', it
+   sizes are kb*sec.  Judging by the contents of 'struct rusage', it
    looks like it should be kb*ticks, like on SunOS.  Ticks/sec seems
    to be (empirically):
    50 Mt. Xinu
@@ -121,7 +121,7 @@ enum
 #define TICKS_PER_SEC 100
 #endif
 
-/* The number of milliseconds in one `tick' used by the `rusage' structure.  */
+/* The number of milliseconds in one 'tick' used by the 'rusage' structure.  */
 #define MSEC_PER_TICK (1000 / TICKS_PER_SEC)
 
 /* Return the number of clock ticks that occur in M milliseconds.  */
@@ -171,7 +171,7 @@ static const char *outfile = NULL;
 /* Output stream, stderr by default.  */
 static FILE *outfp = NULL;
 
-/* If true, append to `outfile' rather than truncating it.  */
+/* If true, append to 'outfile' rather than truncating it.  */
 static bool append = false;
 
 /* The output format string.  */
@@ -313,13 +313,13 @@ fprintargv (FILE *fp, const char *const *argv, const char *filler)
 
 /* summarize: Report on the system use of a command.
 
-   Copy the FMT argument to FP except that `%' sequences
-   have special meaning, and `\n' and `\t' are translated into
-   newline and tab, respectively, and `\\' is translated into `\'.
+   Copy the FMT argument to FP except that '%' sequences
+   have special meaning, and '\n' and '\t' are translated into
+   newline and tab, respectively, and '\\' is translated into '\'.
 
-   The character following a `%' can be:
+   The character following a '%' can be:
    (* means the tcsh time builtin also recognizes it)
-   % == a literal `%'
+   % == a literal '%'
    C == command name and arguments
 *  D == average unshared data size in K (ru_idrss+ru_isrss)
 *  E == elapsed real (wall clock) time in [hour:]min:sec
@@ -377,7 +377,7 @@ summarize (FILE *fp, const char *fmt, const char **command, RESUSE *resp)
 
   /* Convert all times to milliseconds.  Occasionally, one of these values
      comes out as zero.  Dividing by zero causes problems, so we first
-     check the time value.  If it is zero, then we take `evasive action'
+     check the time value.  If it is zero, then we take 'evasive action'
      instead of calculating a value.  */
 
   struct timespec elapsed_time = timespec_sub (resp->end_time,
