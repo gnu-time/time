@@ -35,14 +35,15 @@ tests_time_aux_CPPFLAGS =
 tests_time_aux_CFLAGS =
 tests_time_aux_LDADD =
 
-all_tests =			\
-  tests/help-version.sh		\
-  tests/time-max-rss.sh		\
-  tests/time-child-stderr.sh	\
-  tests/time-environment.sh	\
-  tests/time-exit-codes.sh	\
-  tests/time-posix-quiet.sh	\
-  tests/time-verbose.sh		\
+all_tests =				\
+  tests/help-version.sh			\
+  tests/time-max-rss.sh			\
+  tests/time-child-stderr.sh		\
+  tests/time-environment.sh		\
+  tests/time-exit-codes.sh		\
+  tests/time-posix-quiet.sh		\
+  tests/time-trailing-backslash.sh	\
+  tests/time-verbose.sh			\
   tests/time-format-T.sh
 
 # Note: the "9>&2" redirection is part of Automake's parallel-tests.
