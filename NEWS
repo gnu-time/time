@@ -8,6 +8,11 @@ GNU time NEWS                                         -*- outline -*-
   supported.  Previously it was listed as being equivalent to --help.
   [bug introduced in time-1.8]
 
+  time now closes the file specified by --output in the child process if
+  possible.  Previously the child process would have its file descriptor limit
+  effectively lowered by one.
+  [This bug was present in "the beginning".]
+
 ** Improvements
 
   time now uses the more portable waitpid and getrusage system calls

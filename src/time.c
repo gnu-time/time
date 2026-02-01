@@ -725,7 +725,11 @@ run_command (const char **cmd, RESUSE *resp)
   if (pid < 0)
     error (EXIT_CANCELED, errno, "cannot fork");
   else if (pid == 0)
-    {				/* If child.  */
+    {
+      /* If 'time' is writing to a file specified by --output, try to close the
+         file in the child process before executing CMD.  */
+      if (outfp != stderr)
+        fclose (outfp);
       execvp (cmd[0], (char * const *) cmd);
       saved_errno = errno;
       error (0, errno, "cannot run %s", cmd[0]);
