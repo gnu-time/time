@@ -25,6 +25,12 @@ EXTRA_DIST += $(all_tests) tests/init.sh
 
 TEST_EXTENSIONS = .sh
 
+# We don't want this to go in the top-level directory.
+TEST_SUITE_LOG = tests/test-suite.log
+
+# Display the testsuite log to standard output on failure.
+VERBOSE = yes
+
 # Build the auxiliary program used for testing 'time'.
 # This program is kept minimal and POSIX-compatible on purpose,
 # and does not need gnulib's headers/modules.
