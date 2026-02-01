@@ -583,14 +583,15 @@ summarize (FILE *fp, const char *fmt, const char **command, RESUSE *resp)
 
             case '\0':
               putc ('?', fp);
-              return;
+              break;
 
             default:
               putc ('?', fp);
               putc (*fmt, fp);
             }
 
-          ++fmt;
+          if (*fmt != '\0')
+            ++fmt;
           break; /* end of "case '%'" */
 
         case '\\':		/* Format escape.  */
@@ -605,12 +606,17 @@ summarize (FILE *fp, const char *fmt, const char **command, RESUSE *resp)
             case '\\':
               putc ('\\', fp);
               break;
+            case '\0':
+              putc ('?', fp);
+              putc ('\\', fp);
+              break;
             default:
               putc ('?', fp);
               putc ('\\', fp);
               putc (*fmt, fp);
             }
-          ++fmt;
+          if (*fmt != '\0')
+            ++fmt;
           break;
 
         default:
