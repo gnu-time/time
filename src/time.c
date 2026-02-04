@@ -210,19 +210,11 @@ usage (int status)
 
   printf (_("\
 Usage: %s [OPTIONS] COMMAND [ARG]...\n\
-"),program_name);
+"), program_name);
   fputs (_("\
 Run COMMAND, then print system resource usage.\n\
 \n\
 "), stdout);
-
-  /*
-    printf ("\
-Usage: %s [-apvV] [-f format] [-o file] [--append] [--verbose]\n\
-       [--portability] [--format=format] [--output=file] [--version]\n\
-       [--help] command [arg...]\n",
-          program_name);
-  */
 
   fputs (_("\
   -a, --append              with -o FILE, append instead of overwriting\n\
