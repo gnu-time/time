@@ -8,6 +8,10 @@ GNU time NEWS                                         -*- outline -*-
   supported.  Previously it was listed as being equivalent to --help.
   [bug introduced in time-1.8]
 
+  'time --help' no longer emits duplicate percent signs in the description of
+  the --portability option.
+  [bug introduced in time-1.8]
+
   time now closes the file specified by --output in the child process if
   possible.  Previously the child process would have its file descriptor limit
   effectively lowered by one.
