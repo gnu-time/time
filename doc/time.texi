@@ -569,10 +569,10 @@ When in doubt whether something is needed or not, include it.  It's
 better to include too much than to leave out something important.
 
 @cindex patches, contributing
-Patches are welcome; if possible, please make them with @samp{@w{diff
--c}} (@pxref{Top,, Overview, diff, Comparing and Merging Files}) and
-include @file{ChangeLog} entries (@pxref{Change Log,,, emacs, The GNU
-Emacs Manual}).  Please follow the existing coding style.
+Patches are welcome; if possible, please make them with @samp{@w{git
+format-patch}} and include @file{ChangeLog} entries (@pxref{Change
+Log,,, emacs, The GNU Emacs Manual}).  Please follow the existing coding
+style.
 
 
 @node GNU Free Documentation License
