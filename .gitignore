@@ -40,3 +40,4 @@
 /time-*.tar.xz
 /GNUmakefile
 /maint.mk
+/README-release
