@@ -33,14 +33,8 @@ AC_CONFIG_AUX_DIR([build-aux])
 dnl Where to generate output; srcdir location.
 AC_CONFIG_HEADERS([config.h:config.in])
 
-AM_INIT_AUTOMAKE([
-	1.11.1
-	subdir-objects
-	color-tests
-	parallel-tests
-])
-
-
+AM_INIT_AUTOMAKE([1.11.2 dist-xz color-tests parallel-tests subdir-objects])
+AM_SILENT_RULES([yes])
 
 dnl Checks for programs.
 AC_USE_SYSTEM_EXTENSIONS
