@@ -14,6 +14,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# Used in maint.mk's web-manual rule
+manual_title = GNU Time
+
 old_NEWS_hash = 3702ab788541f5a222d97219516b5096
 
 export VERBOSE = yes
