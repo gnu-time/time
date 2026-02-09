@@ -17,6 +17,17 @@
 # Used in maint.mk's web-manual rule
 manual_title = GNU Time
 
+# Use the direct link.  This is guaranteed to work immediately, while
+# it can take a while for the faster mirror links to become usable.
+url_dir_list = https://ftp.gnu.org/gnu/$(PACKAGE)
+
+# Tools used to bootstrap this package, used for "announcement".
+bootstrap-tools = autoconf,automake,gnulib
+
+# Write cksum supported checksums into the announcement.
+# I.e., base64 to reduce space, and possibly tagged to ease usage.
+announce_gen_args = --cksum-checksums
+
 old_NEWS_hash = 3702ab788541f5a222d97219516b5096
 
 export VERBOSE = yes
