@@ -639,8 +639,7 @@ getargs (int argc, char **argv)
 {
   int optc;
 
-  while ((optc = getopt_long (argc, argv, "+af:o:pqvV", longopts, (int *) 0))
-	 != EOF)
+  while ((optc = getopt_long (argc, argv, "+af:o:pqvV", longopts, NULL)) != -1)
     {
       switch (optc)
 	{
