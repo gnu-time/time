@@ -424,15 +424,15 @@ summarize (FILE *fp, const char *fmt, const char **command, RESUSE *resp)
             case 'E':		/* Elapsed real (wall clock) time.  */
               if (elapsed_time.tv_sec >= 3600)	/* One hour -> h:m:s.  */
                 fprintf (fp, "%ld:%02ld:%02ld",
-                         (long int)(elapsed_time.tv_sec / 3600),
-                         (long int)((elapsed_time.tv_sec % 3600) / 60),
-                         (long int)(elapsed_time.tv_sec % 60));
+                         (long int) {elapsed_time.tv_sec / 3600},
+                         (long int) {(elapsed_time.tv_sec % 3600) / 60},
+                         (long int) {elapsed_time.tv_sec % 60});
               else
                 fprintf (fp, "%ld:%02ld%s%02ld",	/* -> m:s.  */
-                         (long int)(elapsed_time.tv_sec / 60),
-                         (long int)(elapsed_time.tv_sec % 60),
+                         (long int) {elapsed_time.tv_sec / 60},
+                         (long int) {elapsed_time.tv_sec % 60},
                          decimal_point,
-                         (long int)(elapsed_time.tv_nsec / 10000000));
+                         (long int) {elapsed_time.tv_nsec / 10000000});
               break;
 
             case 'F':		/* Major page faults.  */
@@ -446,10 +446,10 @@ summarize (FILE *fp, const char *fmt, const char **command, RESUSE *resp)
             case 'K': /* Average mem usage == data+stack+text.  */
               fprintf (fp, "%lu",
                        MSEC_TO_TICKS (v) == 0 ? 0 :
-                       (long unsigned int)
-                       (get_rusage_idrss_kb (&resp->ru) / MSEC_TO_TICKS (v) +
-                        get_rusage_isrss_kb (&resp->ru) / MSEC_TO_TICKS (v) +
-                        get_rusage_ixrss_kb (&resp->ru) / MSEC_TO_TICKS (v)));
+                       ((long unsigned int)
+                        {get_rusage_idrss_kb (&resp->ru) / MSEC_TO_TICKS (v) +
+                         get_rusage_isrss_kb (&resp->ru) / MSEC_TO_TICKS (v) +
+                         get_rusage_ixrss_kb (&resp->ru) / MSEC_TO_TICKS (v)}));
               break;
 
             case 'M': /* Maximum resident set size.  */
@@ -476,9 +476,9 @@ summarize (FILE *fp, const char *fmt, const char **command, RESUSE *resp)
 
             case 'S':		/* System time.  */
               fprintf (fp, "%ld%s%02ld",
-                       (long int)resp->ru.ru_stime.tv_sec,
+                       (long int) {resp->ru.ru_stime.tv_sec},
                        decimal_point,
-                       (long int)(resp->ru.ru_stime.TV_MSEC / 10));
+                       (long int) {resp->ru.ru_stime.TV_MSEC / 10});
               break;
 
             case 'T':
@@ -531,9 +531,9 @@ summarize (FILE *fp, const char *fmt, const char **command, RESUSE *resp)
 
             case 'U':		/* User time.  */
               fprintf (fp, "%ld%s%02ld",
-                       (long int)(resp->ru.ru_utime.tv_sec),
+                       (long int) {resp->ru.ru_utime.tv_sec},
                        decimal_point,
-                       (long int)(resp->ru.ru_utime.TV_MSEC / 10));
+                       (long int) {resp->ru.ru_utime.TV_MSEC / 10});
               break;
 
             case 'W':		/* Times swapped out.  */
@@ -556,9 +556,9 @@ summarize (FILE *fp, const char *fmt, const char **command, RESUSE *resp)
 
             case 'e':		/* Elapsed real time in seconds.  */
               fprintf (fp, "%ld%s%02ld",
-                       (long int)elapsed_time.tv_sec,
+                       (long int) {elapsed_time.tv_sec},
                        decimal_point,
-                       (long int)(elapsed_time.tv_nsec / 10000000));
+                       (long int) {elapsed_time.tv_nsec / 10000000});
               break;
 
             case 'k':		/* Signals delivered.  */
