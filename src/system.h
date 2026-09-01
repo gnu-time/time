@@ -39,3 +39,15 @@ enum
 "Your shell may have its own version of %s, which usually supersedes\n" \
 "the version described here.  Please refer to your shell's documentation\n" \
 "for details about the options it supports.\n")
+
+/* exit with a _single_ "write error" diagnostic.  */
+
+static inline void
+write_error (void)
+{
+  int saved_errno = errno;
+  fflush (stdout);    /* Last attempt to write any buffered data.  */
+  fpurge (stdout);    /* Ensure nothing buffered that might induce an error. */
+  clearerr (stdout);  /* Avoid extraneous diagnostic from close_stdout.  */
+  error (EXIT_FAILURE, saved_errno, _("write error"));
+}

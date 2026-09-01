@@ -300,7 +300,7 @@ fprintargv (FILE *fp, const char *const *argv)
       fputs(*av, fp);
     }
   if (ferror (fp))
-    error (EXIT_FAILURE, errno, "write error");
+    write_error ();
 }
 
 /* summarize: Report on the system use of a command.
@@ -636,12 +636,12 @@ summarize (FILE *fp, const char *fmt, const char **command, RESUSE *resp)
         }
 
       if (ferror (fp))
-        error (EXIT_FAILURE, errno, "write error");
+        write_error ();
     }
   putc ('\n', fp);
 
   if (ferror (fp))
-    error (EXIT_FAILURE, errno, "write error");
+    write_error ();
 }
 
 /* Initialize the options and parse the command line arguments.
