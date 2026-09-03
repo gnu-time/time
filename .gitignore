@@ -3,6 +3,7 @@
 .dirstamp
 .version
 
+/ABOUT-NLS
 /aclocal.m4
 /ChangeLog
 /config.h
@@ -25,6 +26,16 @@
 /doc/stamp-vti
 /doc/time.info
 /doc/version.texi
+/po/*.gmo
+/po/*.po
+/po/.gitignore
+/po/Makefile
+/po/Makefile.in
+/po/Makevars
+/po/POTFILES
+/po/remove-potcdate.sed
+/po/stamp-po
+/po/time.pot
 /stamp-h1
 /stamp.h*
 

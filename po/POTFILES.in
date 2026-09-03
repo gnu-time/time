@@ -1,0 +1,9 @@
+# List of files which contain translatable strings.
+# Copyright (C) 2026 Free Software Foundation, Inc.
+
+lib/error.c
+lib/getopt.c
+lib/version-etc.c
+
+src/system.h
+src/time.c

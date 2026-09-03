@@ -240,7 +240,10 @@ AS_MKDIR_P([src])
 AS_MKDIR_P([doc])
 AS_MKDIR_P([tests])
 
-AC_CONFIG_FILES([Makefile])
+AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION([0.19.2])
+
+AC_CONFIG_FILES([Makefile po/Makefile.in])
 AC_OUTPUT
 
 # Warn the user if getrusage(2) behaviour on this OS is unknown
