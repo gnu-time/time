@@ -732,12 +732,12 @@ run_command (const char **cmd, RESUSE *resp)
   /* Run CMD as child process.  */
   pid_t pid = fork ();
   if (pid < 0)
-    error (EXIT_CANCELED, errno, "cannot fork");
+    error (EXIT_CANCELED, errno, _("cannot fork"));
   else if (pid == 0)
     {
       execvp (cmd[0], (char * const *) cmd);
       int saved_errno = errno;
-      error (0, errno, "cannot run %s", cmd[0]);
+      error (0, errno, _("cannot run %s"), cmd[0]);
       _exit (saved_errno == ENOENT ? EXIT_ENOENT : EXIT_CANNOT_INVOKE);
     }
 
@@ -748,14 +748,14 @@ run_command (const char **cmd, RESUSE *resp)
   while (waitpid (pid, &resp->waitstatus, 0) < 0)
     {
       if (errno != EINTR)
-        error (EXIT_FAILURE, errno, "error waiting for child process");
+        error (EXIT_FAILURE, errno, _("error waiting for child process"));
     }
 
   resp->end_time = current_timespec ();
 
   if (getrusage (RUSAGE_CHILDREN, &resp->ru) < 0)
     error (EXIT_FAILURE, errno,
-           "error getting resource usage for child process");
+           _("error getting resource usage for child process"));
 
   /* Re-enable signals.  */
   signal (SIGINT, interrupt_signal);
