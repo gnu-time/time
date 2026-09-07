@@ -41,6 +41,7 @@
 
 #include "system.h"
 
+#include "quote.h"
 #include "timespec.h"
 #include "version.h"
 #include "version-etc.h"
@@ -704,7 +705,7 @@ getargs (int argc, char **argv)
     {
       outfp = fopen (outfile, append ? "ae" : "we");
       if (outfp == NULL)
-	error (EXIT_CANCELED, errno, "%s", outfile);
+	error (EXIT_CANCELED, errno, "%s", quotef (outfile));
     }
 
   /* If --verbose is used, disregard --format and use VERBOSE_FORMAT.  */
@@ -737,7 +738,7 @@ run_command (const char **cmd, RESUSE *resp)
     {
       execvp (cmd[0], (char * const *) cmd);
       int saved_errno = errno;
-      error (0, errno, _("cannot run %s"), cmd[0]);
+      error (0, errno, "%s", quote (cmd[0]));
       _exit (saved_errno == ENOENT ? EXIT_ENOENT : EXIT_CANNOT_INVOKE);
     }
 

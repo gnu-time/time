@@ -50,6 +50,15 @@ AC_C_INLINE
 gl_EARLY
 gl_INIT
 
+# We don't call mbrtowc from multiple threads.
+AC_DEFINE([GNULIB_MBRTOWC_SINGLE_THREAD], [1],
+  [Define to 1 if apps call mbrtowc, mbrtoc32, and 'regex' functions
+   from a single thread.])
+# We don't touch the locale after startup.
+AC_DEFINE([GNULIB_WCHAR_SINGLE_LOCALE], [1],
+  [Define to 1 if apps don't set the locale after calling
+   locale-sensitive functions like mbrtowc and wcwidth.])
+
 AC_DEFINE([GNULIB_NO_VLA], [1], [Define to 1 to disable use of VLAs])
 
 # gl_GCC_VERSION_IFELSE([major], [minor], [run-if-found], [run-if-not-found])

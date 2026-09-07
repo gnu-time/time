@@ -42,6 +42,9 @@ src_time_LDADD = $(LDADD)
 # For gettime.
 src_time_LDADD += $(CLOCK_TIME_LIB)
 
+# For quote.
+src_time_LDADD += $(LIBINTL) $(MBRTOWC_LIB)
+
 BUILT_SOURCES += src/version.c
 src/version.c: Makefile
 	$(AM_V_GEN)rm -f $@

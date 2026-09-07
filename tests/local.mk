@@ -43,6 +43,7 @@ tests_time_aux_LDADD =
 
 all_tests =				\
   tests/help-version.sh			\
+  tests/quoted-errors.sh		\
   tests/time-max-rss.sh			\
   tests/time-child-stderr.sh		\
   tests/time-environment.sh		\

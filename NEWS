@@ -10,6 +10,9 @@ GNU time NEWS                                         -*- outline -*-
 
 ** Improvements
 
+  time now quotes user supplied arguments in error strings, which avoids
+  confusing error messages in the presence of '\n' chars, etc.
+
   time now sets the locale so that strerror(3) returns localized error strings
   on operating systems that supply them.
 

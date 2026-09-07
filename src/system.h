@@ -51,3 +51,12 @@ write_error (void)
   clearerr (stdout);  /* Avoid extraneous diagnostic from close_stdout.  */
   error (EXIT_FAILURE, saved_errno, _("write error"));
 }
+
+/* How coreutils quotes filenames, to minimize use of outer quotes,
+   but also provide better support for copy and paste when used.  */
+#include "quotearg.h"
+
+/* Use these to shell quote only when necessary,
+   when the quoted item is already delimited with colons.  */
+#define quotef(arg) \
+  quotearg_n_style_colon (0, shell_escape_quoting_style, arg)
