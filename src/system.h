@@ -40,6 +40,14 @@ enum
 "the version described here.  Please refer to your shell's documentation\n" \
 "for details about the options it supports.\n")
 
+static inline void
+emit_mandatory_arg_note (void)
+{
+  fputs (_("\n\
+Mandatory arguments to long options are mandatory for short options too.\n\
+"), stdout);
+}
+
 /* exit with a _single_ "write error" diagnostic.  */
 
 static inline void

@@ -217,8 +217,9 @@ Usage: %s [OPTIONS] COMMAND [ARG]...\n\
 "), program_name);
   fputs (_("\
 Run COMMAND, then print system resource usage.\n\
-\n\
 "), stdout);
+
+  emit_mandatory_arg_note ();
 
   fputs (_("\
   -a, --append              with -o FILE, append instead of overwriting\n\
