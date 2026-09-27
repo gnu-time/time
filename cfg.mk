@@ -32,6 +32,17 @@ old_NEWS_hash = 6846e647b6f358bb0216ad33b3e5e86e
 
 export VERBOSE = yes
 
+# Larger values for the compression level don't seem to help GNU Time.
+# Tested with:
+# for e in '' '-e'; do
+#   for l in $(seq 0 9); do
+#     echo == $e -$l ==;
+#     env time -f 'elapsed=%E CPU=%Us Mem=%MKB' \
+#       xz -c $e -$l < time-1.10.tar | wc -c;
+#   done;
+# done
+export XZ_OPT = -6e
+
 # Augment AM_CFLAGS to include our per-directory options:
 AM_CFLAGS += $($(@D)_CFLAGS)
 
